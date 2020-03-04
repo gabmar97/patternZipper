@@ -1,2 +1,2 @@
 # RegEx-File-Mover
-A program that will move contents within folders that match regex expression
+A python program that will automatically move contents within multiple folders within a directory that match regex expression
