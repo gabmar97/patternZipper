@@ -6,7 +6,7 @@ A python program that will automatically move contents within a directorie's sub
 
 * Matches files that contain a '-' and end in jpg
 
-* Only can move directory one level
+* Only moves matched files up one directory above source directory path
 
 Instructions
 ---
