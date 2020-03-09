@@ -6,4 +6,10 @@ A python program that will automatically move contents within a directorie's sub
 
 * Matches files that contain a '-' and end in jpg
 
-* Only can move directory one level 
+* Only can move directory one level
+
+Instructions
+---
+* Code currently only tested with Ubuntu bash
+Use: python3 regexFileMover.py directoryPath
+
