@@ -1,10 +1,11 @@
+# Copyright 2020 Gabriel Martinez
 import sys
 import re
 import os
 import shutil
 import zipfile
 
-class regexFileMover:
+class patternZipper:
     # Class to run processes through a given directory
     def __init__(self):
          self.__root_path = sys.argv[1]
@@ -46,5 +47,5 @@ class regexFileMover:
                 
                 
 if __name__ == "__main__":
-    parser = regexFileMover()
+    parser = patternZipper()
     sys.exit(0)
