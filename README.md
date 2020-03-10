@@ -6,10 +6,9 @@ A python program that will automatically move contents within a directorie's sub
 
 * Matches files that contain a '-' and end in jpg
 
-* Only moves matched files up one directory above source directory path
-
+* Zips files whose names match the hardcoded pattern in a zip archive. Once the program has ran through all sub-directories it deletes everything within the given directroy path. 
 Instructions
 ---
 * Code currently only tested with Ubuntu bash
-Use: python3 regexFileMover.py directoryPath
+Use:  When given a directory path, a destination path, and an archive name (including extension), the program zips all the matched file names within every directory and sub-directory and zips them to a file in the destination path. 
 
