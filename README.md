@@ -8,11 +8,11 @@ A python program that will automatically move contents within a directorie's sub
   * For Example: python3 patternZipper.py directoryPath destinationPath archiveName
   
 * **NOTES:** 
-* Currently matches a hard coded pattern
+  * Currently matches a hard coded pattern
 
-* Matches files that contain a '-' and end in jpg
+  * Matches files that contain a '-' and end in jpg
 
-* Zips files whose names match the hardcoded pattern in a zip archive. Once the program has ran through all sub-directories it deletes everything within the given directroy path. 
+  * Zips files whose names match the hardcoded pattern in a zip archive. Once the program has ran through all sub-directories it deletes everything within the given directroy path. 
 Instructions
 
 * **WARNING:** 
