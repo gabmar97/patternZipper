@@ -1,8 +1,8 @@
-import sys
-import re
 import os
-import shutil
+import re
+import sys
 import zipfile
+
 
 class regexFileMover:
     # Class to run processes through a given directory
@@ -11,7 +11,7 @@ class regexFileMover:
          self.__zip_dest = sys.argv[2]
          self.__zip_name = sys.argv[3]
          self.__zipFiles()
-         self.__deleteDirectoryContents(self.__root_path)
+         # self.__deleteDirectoryContents(self.__root_path)
          
     
     # Given regexs, a file will be moved one directory up if file name matches
