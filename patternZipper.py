@@ -2,6 +2,7 @@ import os
 import re
 import sys
 import zipfile
+import shutil
 from tkinter import filedialog, messagebox
 from tkinter import *
 
@@ -11,6 +12,8 @@ class RegexFileMover:
     def __init__(self):
         # initializing tk window
         self.__window = Tk()
+        self.__window.title("Pattern Zipper")
+        self.__window.iconbitmap(r'Tkinter_icon.ico')
         self.__root_path = ""
         self.__dest_path = ""
         self.__zip_name = ""
@@ -23,13 +26,21 @@ class RegexFileMover:
     def __set_root(self, event):
         self.__root_path = filedialog.askdirectory()
         self.__root_path = self.__root_path + "/"
-        label_root_dir = Label(self.__window, text=self.__root_path)
+        label_root_dir = Label(
+            self.__window, 
+            text=self.__root_path, 
+            bg='gray28', 
+            fg = 'gray64')
         label_root_dir.place(anchor=N, relx=.5, rely=.155)
 
     def __set_dest(self, event):
         self.__dest_path = filedialog.askdirectory()
         self.__dest_path = self.__dest_path + "/"
-        label_dest_dir = Label(self.__window, text=self.__dest_path)
+        label_dest_dir = Label(
+            self.__window, 
+            text=self.__dest_path,
+            bg='gray28', 
+            fg = 'gray64')
         label_dest_dir.place(anchor=N, relx=.5, rely=.325)
 
     def __set_zip_name(self, event):
@@ -44,27 +55,56 @@ class RegexFileMover:
     # Function to run zipping after variables are set
     def __run(self, event):
         # Making sure input is no longer empty
+        
         self.__zip_name = self.__zip_var.get()
 
         # Zips files if input is non-empty
         self.__zipFiles()
         self.__deleteDirectoryContents()
-        messagebox.showinfo("Pattern Zipper", "Files Zipped!")
 
+        messagebox.showinfo("Pattern Zipper", "Files Zipped!")
+        
     # Creates GUI to recieve Input and run code
     def __gui(self):
         # setting window parameters
         self.__window.title('Pattern Zipper')
         self.__window.geometry('650x450')
-        self.__window.iconbitmap('Tkinter_icon.ico')
+        self.__window.configure(bg='gray28')
 
         # initializing tk objects
-        button_root = Button(self.__window, text="Root Directory")
-        button_dest = Button(self.__window, text="Destination Directory")
-        button_zip = Button(self.__window, text="Zip Files")
-        label_zip = Label(self.__window, text="Archive Name: ")
-        entry_zip_name = Entry(self.__window, textvariable=self.__zip_var)
-        delete_box = Checkbutton(self.__window, text="Delete Root Contents:")
+        button_root = Button(
+            self.__window, text="Root Directory", 
+            bg='gray28', fg = 'gray64', 
+            activebackground = 'gray28',
+            activeforeground ='gray64')
+        button_dest = Button(
+            self.__window, 
+            text="Destination Directory", 
+            bg='gray28', 
+            fg = 'gray64', 
+            activebackground ='gray28',
+            activeforeground ='gray64')
+        button_zip = Button(
+            self.__window, 
+            text="Zip Files", 
+            bg='gray28',
+            fg = 'gray64',
+            activebackground ='gray28',
+            activeforeground ='gray64')
+        label_zip = Label(
+            self.__window, 
+            text="Archive Name: ", 
+            bg='gray28', 
+            fg = 'gray64')
+        entry_zip_name = Entry(
+            self.__window, 
+            textvariable=self.__zip_var, 
+            bg='gray64')
+        delete_box = Checkbutton(
+            self.__window, 
+            text="Delete Root Contents:", 
+            bg='gray28', 
+            fg = 'gray64')
 
         # placing tk objects on window
         button_root.place(anchor=S, relx=.5, rely=.15)
@@ -103,24 +143,14 @@ class RegexFileMover:
 
     # Deletes all subdirs and files from given dir
     def __deleteDirectoryContents(self):
-        if (self.__to_delete):
-            # Emptying subdirectories
-            for root, dirs, files in os.walk(
-                    self.__root_path, followlinks=False
-            ):
-                for f in files:
-                    print("Deleting file: " + f)
-                    os.remove(os.path.join(root, f))
-
-            # Deleting empty subdirectories
-            for root, dirs, files in os.walk(
-                    self.__root_path, followlinks=False
-            ):
-                for d in dirs:
-                    print("Deleting folder: " + d)
-                    os.rmdir(os.path.join(root, d))
-        else:
-            print("Files not deleted")
+        try:
+            if (self.__to_delete):
+                # Deleting subdirectories
+                shutil.rmtree(self.__root_path)
+            else:
+                print("Files not deleted")
+        except:
+            print ("PermissionError")
 
 if __name__ == "__main__":
     zipper = RegexFileMover()
